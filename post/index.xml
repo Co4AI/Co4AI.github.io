@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Code2arter</title>
-    <link>http://localhost:1313/post/blog/post/blog/post/</link>
+    <link>https://code2arter.github.io/post/</link>
     <description>Recent content in Posts on Code2arter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Apr 2020 11:26:23 +0800</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/post/blog/post/blog/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://code2arter.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>搜索</title>
-      <link>http://localhost:1313/post/blog/post/blog/post/blog/</link>
+      <link>https://code2arter.github.io/post/blog/</link>
       <pubDate>Fri, 10 Apr 2020 11:26:23 +0800</pubDate>
       
-      <guid>http://localhost:1313/post/blog/post/blog/post/blog/</guid>
+      <guid>https://code2arter.github.io/post/blog/</guid>
       <description>&lt;p&gt;计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。
