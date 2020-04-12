@@ -6,7 +6,7 @@
 
 <title>
   
-     搜索 | 
+     搜索之 DFS 与 BFS | 
     Code2arter
   
 </title><meta name="description" content="量变引起质变，这就是计算机给出的答案"><meta name="author" content="code2arter">
@@ -27,7 +27,7 @@
 
 
 
-<link rel="canonical" href="https://code2arter.github.io/post/blog/"><meta property="og:title" content="搜索" />
+<link rel="canonical" href="https://code2arter.github.io/post/blog/"><meta property="og:title" content="搜索之 DFS 与 BFS" />
 <meta property="og:description" content="计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。
@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://code2arter.github.io/images/time-change.jpeg" />
 <meta property="article:published_time" content="2020-04-10T11:26:23+08:00" />
 <meta property="article:modified_time" content="2020-04-10T11:26:23+08:00" />
-<meta itemprop="name" content="搜索">
+<meta itemprop="name" content="搜索之 DFS 与 BFS">
 <meta itemprop="description" content="计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。
@@ -50,7 +50,7 @@
 我虽然一下找不出最优解，但是我可以算有情况都考虑。就是这么的霸道，这就是计算的艺术。">
 <meta itemprop="datePublished" content="2020-04-10T11:26:23&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-10T11:26:23&#43;08:00" />
-<meta itemprop="wordCount" content="36">
+<meta itemprop="wordCount" content="413">
 <meta itemprop="image" content="https://code2arter.github.io/images/time-change.jpeg">
 
 
@@ -58,7 +58,7 @@
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://code2arter.github.io/images/time-change.jpeg"/>
 
-<meta name="twitter:title" content="搜索"/>
+<meta name="twitter:title" content="搜索之 DFS 与 BFS"/>
 <meta name="twitter:description" content="计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。
@@ -98,7 +98,7 @@
                             <span><i class="fas fa-clock mr-2"></i></span>
                         </div>
 
-                        <h1>搜索</h1>
+                        <h1>搜索之 DFS 与 BFS</h1>
 
                         <ul class="authors list-inline"><li class="list-inline-item mr-3">
                     <div class="media author"><a href="/authors/code2arter/" class="mr-3">
@@ -116,7 +116,7 @@
                     </div>
                 </div><div class="row justify-content-center mb-3">
                                 <div class="col-lg-10">
-                                    <img data-src="/images/time-change_hu8c079f23f7401a66ddc659ee633db126_23525_900x500_fit_q75_box.jpeg" class="img-fluid rounded mx-auto d-block" alt="搜索">
+                                    <img data-src="/images/time-change_hu8c079f23f7401a66ddc659ee633db126_23525_900x500_fit_q75_box.jpeg" class="img-fluid rounded mx-auto d-block" alt="搜索之 DFS 与 BFS">
                                 </div>
                             </div><div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -130,7 +130,7 @@
 我虽然一下找不出最优解，但是我可以算有情况都考虑。就是这么的霸道，这就是计算的艺术。</p>
 <hr>
 <h4 id="遍历">遍历</h4>
-<pre><code class="language-python">numbers = [1,2,3,4,5,6,7,8,9,10]
+<pre><code class="language-python">numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 for number in numbers:
     func(number)
 </code></pre>
@@ -139,34 +139,209 @@ for number in numbers:
 但是往往我们不能直接得到可以这么方便的线性搜索列表，比如走迷宫啦，下棋啦。
 于是computer scientist就总结出一系列搜索技巧。看来有了计算能力之后，解决问题也还是不能无脑啊~</p>
 <h4 id="深度优先搜索与广度优先搜索">深度优先搜索与广度优先搜索</h4>
-<p>深搜（depth first search）和广搜(breadth first search)是常见两种搜索方式。</p>
-<p>深搜，从开始一直走到</p>
+<p>深搜（depth first search）和广搜(breadth first search)是“图”中常见两种搜索方式。
+如图1所示，深搜是从开始节点一路走到底，然后退回上一个节点，接着走到底的过程；而广搜则逐层搜索。它们都能完成对简单图的遍历，
+但是针对具体问题时，选择合适的方式可以让代码更简洁，耗时更短。</p>
 <figure class="figure">
     <a href="/images/dfs_bfs.gif" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/dfs_bfs.gif"class="figure-img img-fluid"
         /> 
     </a><figcaption class="figure-caption text-center">
-            a
+            图1. dfs与bfs
         </figcaption>
 </figure>
+
+<h5 id="深度优先搜索">深度优先搜索</h5>
+<p>以“树”为例，复杂度为2^n,树高为n。则dfs占用空间为O(n), 一般解决两点是否连通，有多少个连通区域问题。下面看dfs，以及dfs+保存路径的代码怎么写。</p>
+<p><a href="https://leetcode-cn.com/problems/path-sum/">leetcode.112</a> 是一个<strong>典型的dfs问题</strong>，已经给定了数据结构，我们逐边搜索，搜到结果返回即可。
+<figure class="figure">
+    <a href="/images/leetcode112.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/leetcode112.png"class="figure-img img-fluid"
+        /> 
+    </a><figcaption class="figure-caption text-center">
+            图2. 路径总和
+        </figcaption>
+</figure>
+</p>
+<pre><code class="language-python">class Solution:
+    def hasPathSum(self, root: TreeNode, sum: int) -&gt; bool:
+        if root is None:
+            return False
+        if root.left is None and root.right is None:
+            return sum == root.val  # 此时是叶子节点，其余不是
+        sum -= root.val
+        return self.hasPathSum(root.left, sum) or self.hasPathSum(root.right, sum)
+</code></pre>
+<p><a href="https://leetcode-cn.com/problems/path-sum-ii/">leetcode.113</a> <strong>dfs保存路径问题</strong>。
+<figure class="figure">
+    <a href="/images/leetcode113.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/leetcode113.png"class="figure-img img-fluid"
+        /> 
+    </a><figcaption class="figure-caption text-center">
+            图3. 路径总和II
+        </figcaption>
+</figure>
+</p>
+<pre><code class="language-python">class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -&gt; List[List[int]]:
+        res = []
+        def dfs(root, path, sum):
+            if root is None:
+                return
+            if root.left is None and root.right is None:
+                if root.val == sum:
+                    path.append(root.val)
+                    res.append(path)
+                else:
+                    return
+            # left
+            _temp_path = path.copy()
+            _temp_path.append(root.val)
+            dfs(root.left, _temp_path, sum-root.val)
+            # right
+            _temp_path = path.copy()
+            _temp_path.append(root.val)
+            dfs(root.right, _temp_path, sum-root.val)
+        dfs(root, [], sum)
+        return res
+</code></pre>
+<h5 id="宽度优先搜索">宽度优先搜索</h5>
+<p>以“树”为例，复杂度为2^n,树高为n。则bfs占用空间为O(n^2), 一般解决最短路径问题。下面看bfs，以及bfs+保存路径的代码怎么写。</p>
+<p><a href="https://leetcode-cn.com/problems/word-ladder/">leetcode.127</a> 是一个<strong>典型的bfs问题</strong>，每一个与当前word距离为1的单词就是搜索的下一层，我们逐层搜索，搜到endWord返回即可。
+<figure class="figure">
+    <a href="/images/leetcode127.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/leetcode127.png"class="figure-img img-fluid"
+        /> 
+    </a><figcaption class="figure-caption text-center">
+            图4. 单词接龙
+        </figcaption>
+</figure>
+</p>
+<pre><code class="language-python">from collections import defaultdict
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -&gt; int:
+        def getDict(wordList):
+            lookup = defaultdict(set)
+            for word in wordList:
+                for i in range(len(word)):
+                    lookup[word[:i]+'*'+word[i+1:]].add(word)
+            return lookup
+            
+        def addDisOne(word, vised, que, lookup):
+            for i in range(len(word)):
+                value = lookup[word[:i]+'*'+word[i+1:]]
+                for w in value:
+                    if w not in vised:
+                        vised.add(w)
+                        que.append(w)
+            
+        vised = set()
+        que = [beginWord]
+        lookup = getDict(wordList)
+        dis = 1
+        while len(que) &gt; 0:
+            length = len(que)
+            for i in range(length):
+                cur = que.pop(0)
+                if cur == endWord:
+                    return dis
+                addDisOne(cur, vised, que, lookup)  #  一般第一次写都不会这个addDisOne函数，这也不是bfs的思考重点
+            dis += 1
+        return 0
+</code></pre>
+<p><a href="https://leetcode-cn.com/problems/word-ladder-ii//">leetcode.126</a> <strong>bfs保存路径问题</strong>。
+<figure class="figure">
+    <a href="/images/leetcode126.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/leetcode126.png"class="figure-img img-fluid"
+        /> 
+    </a><figcaption class="figure-caption text-center">
+            图5. 单词接龙II
+        </figcaption>
+</figure>
+
+bfs保存搜索路径比dfs要困难许多，因为是借助队列进行搜索，所以搜索路径是不连续的。这里我们这样考虑：
+每次入队，把入队元素的前置元素(prefix)记录下来，然后最后遍历到结果的时候，再从根节点开始dfs搜索，得到所有搜索路径。</p>
+<pre><code class="language-python">from collections import defaultdict
+
+class Solution:
+    def findLadders(self, beginWord, endWord, wordList):
+        def getDict(wordList):
+            lookup = defaultdict(set)
+            for word in wordList:
+                for i in range(len(word)):
+                    lookup[word[:i]+'*'+word[i+1:]].add(word)
+            return lookup
+            
+        def addDisOne(word, vised, que, lookup, vised_this_layer, prefix_map):
+            for i in range(len(word)):
+                value = lookup[word[:i]+'*'+word[i+1:]]
+                for w in value:
+                    if w not in vised:
+                        prefix_map[w].add(word)
+                        if w not in vised_this_layer:
+                            que.append(w)
+                            vised_this_layer.add(w)
+
+            return vised_this_layer
+            
+        vised = set()
+        que = [beginWord]
+        lookup = getDict(wordList)
+        prefix_map = defaultdict(set)
+        while len(que) &gt; 0:
+            length = len(que)
+            vised_this_layer = set()
+            for i in range(length):
+                cur = que.pop(0)
+                if cur == endWord:
+                    continue
+                _vised = addDisOne(cur, vised, que, lookup, vised_this_layer, prefix_map)
+            vised = vised.union(_vised)
+
+        if len(prefix_map[endWord]) == 0:
+            return []
+        res = []
+        def dfs(word, path):
+            prefix_words = prefix_map[word]
+            for prefix in prefix_words:
+                _path = path.copy()
+                _path.append(prefix)
+                if prefix == beginWord:
+                    res.append(_path[::-1])
+                    return
+                else:
+                    dfs(prefix, _path)
+        dfs(endWord, [endWord])
+        return res
+</code></pre>
+<p>至此，我们大概对dfs与bfs有了初步的了解。它们都是对问题可能的解进行逐一的搜索，做到不重不漏即可。对了，附上自然界的宽搜：
+<figure class="figure">
+    <a href="/images/bfs_in_nature.gif" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/bfs_in_nature.gif"class="figure-img img-fluid"
+        /> 
+    </a><figcaption class="figure-caption text-center">
+            图6. 自然界的宽搜
+        </figcaption>
+</figure>
+</p>
                         </div><ul class="share nav my-3 justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&text=%e6%90%9c%e7%b4%a2">
+            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&text=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
               <i class="fa-fw fab fa-twitter"></i>
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2">
+            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-linkedin-in"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&t=%e6%90%9c%e7%b4%a2">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&t=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-facebook-f"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2">
+            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-reddit-alien"></i>
             </a>
         </li>
