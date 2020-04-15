@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构与算法 on Code2arter</title>
+    <link>https://code2arter.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 数据结构与算法 on Code2arter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 14 Apr 2020 22:06:35 +0800</lastBuildDate>
+    
+	<atom:link href="https://code2arter.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>单调栈</title>
+      <link>https://code2arter.github.io/post/monotonous_stack/</link>
+      <pubDate>Tue, 14 Apr 2020 22:06:35 +0800</pubDate>
+      
+      <guid>https://code2arter.github.io/post/monotonous_stack/</guid>
+      <description>&lt;p&gt;栈，数据具有先进后出(FILO)的特性一种数据结构。单调栈，即保持栈内元素具有单调性，单调递增，或者单调递减。主要用来解决，&lt;strong&gt;左边第一个比我高或者右边第一个比我矮&lt;/strong&gt;之类的问题。
+利用单调栈，可以优化到 O(n) 时间复杂度。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
