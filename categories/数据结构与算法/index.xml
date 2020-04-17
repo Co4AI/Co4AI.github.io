@@ -6,10 +6,19 @@
     <description>Recent content in 数据结构与算法 on Code2arter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Apr 2020 22:06:35 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 15 Apr 2020 20:24:01 +0800</lastBuildDate>
     
 	<atom:link href="https://code2arter.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>动态规划</title>
+      <link>https://code2arter.github.io/post/dynamic_programming/</link>
+      <pubDate>Wed, 15 Apr 2020 20:24:01 +0800</pubDate>
+      
+      <guid>https://code2arter.github.io/post/dynamic_programming/</guid>
+      <description>&lt;p&gt;动态规划，也是一种对搜索的优化方式，不过它要求的条件更加苛刻。一般是针对求一个最值或者求一个数量问题，就是某一子集索然有许许多多搜索路径，但是最终需要的答案不在乎这些路径的具体细节，只需要一个属性值。再回到本专题开始强调的思想，动态规划、二分搜索等等一系列算法，都是回答一个问题：&lt;strong&gt;为什么不用暴力搜索？&lt;/strong&gt; 答：&lt;strong&gt;因为求解的问题具有一些性质。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>单调栈</title>
@@ -19,6 +28,21 @@
       <guid>https://code2arter.github.io/post/monotonous_stack/</guid>
       <description>&lt;p&gt;栈，数据具有先进后出(FILO)的特性一种数据结构。单调栈，即保持栈内元素具有单调性，单调递增，或者单调递减。主要用来解决，&lt;strong&gt;左边第一个比我高或者右边第一个比我矮&lt;/strong&gt;之类的问题。
 利用单调栈，可以优化到 O(n) 时间复杂度。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>搜索之 DFS 与 BFS</title>
+      <link>https://code2arter.github.io/post/blog/</link>
+      <pubDate>Fri, 10 Apr 2020 11:26:23 +0800</pubDate>
+      
+      <guid>https://code2arter.github.io/post/blog/</guid>
+      <description>&lt;p&gt;计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
+许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
+比如如何计算从1到n的一次方和，二次方和，三次方和等等。
+如果不幸没有总结出一套万能公式，那人们也有对应方法，其实也可以叫算法，那就是贪心算法。
+比如找零钱、比如吃自助餐（专找贵的吃，结果一下吃饱了 :D）。
+有了计算机，一切都不一样的了起来。我虽然总结不出个公式，但是我可以从到到尾都给你算一遍；
+我虽然一下找不出最优解，但是我可以算有情况都考虑。就是这么的霸道，这就是计算的艺术。&lt;/p&gt;</description>
     </item>
     
   </channel>
