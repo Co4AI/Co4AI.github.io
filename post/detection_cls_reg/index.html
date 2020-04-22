@@ -103,7 +103,7 @@
                         <div class="content">
                             <p>由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。</p>
 <h4 id="cascade-r-cnn">Cascade R-CNN</h4>
-<p>CVPR2018, ucsd。现象：训练时候把正负样本界线的IoU提高，效果不怎么理想。说一下为啥要提高IoU阈值，因为我们想要得到更好、更精细的预测结果。图1左表示proposal与GT的IoU 经过第二阶段网络之后的改变，灰色不变就是baseline了。可以看到训练的时候三条曲线的优势都是在和训练阈值差不多的时候体现的。图1右表示训练IoU提高不一定是好事。
+<p>CVPR2018, ucsd。现象：训练时候把正负样本界线的IoU提高，效果不怎么理想。说一下为啥要提高IoU阈值，因为我们想要得到更好、更精细的预测结果。图1左表示proposal与GT的IoU 经过第二阶段网络之后的改变，灰色不变就是baseline了。可以看到训练的时候三条曲线的优势都是在和训练阈值差不多的时候体现的。图1右表示训练IoU提高不一定是好事。</p>
 <figure class="figure">
     <a href="/images/cascade_rcnn/q1.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/cascade_rcnn/q1.png"class="figure-img img-fluid"
@@ -113,11 +113,12 @@
         </figcaption>
 </figure>
 
-Cascade R-CNN认为这里存在两个问题：</p>
+<p>Cascade R-CNN认为这里存在两个问题：</p>
 <ol>
 <li>二阶段proposal选取策略，会使得网络在阈值附近过拟合。前面这句是论文的说法，其实就是高IoU的样本太少了。</li>
 <li>预测与训练分布不一样。inference的时候，IoU可不是0.5为界，好的proposal IoU都比较高。
-另外有个有意思的实验：在预测的时候吧GT框加入proposal集合中，可以看到IoU阈值是0.7时候训练的模型直接起飞；这也表明用IoU=0.5来训练模型，并不是个好选择。
+另外有个有意思的实验：在预测的时候吧GT框加入proposal集合中，可以看到IoU阈值是0.7时候训练的模型直接起飞；这也表明用IoU=0.5来训练模型，并不是个好选择。</li>
+</ol>
 <figure class="figure">
     <a href="/images/cascade_rcnn/a1.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/cascade_rcnn/a1.png"class="figure-img img-fluid"
@@ -127,8 +128,8 @@ Cascade R-CNN认为这里存在两个问题：</p>
         </figcaption>
 </figure>
 
-所以提出Cascade R-CNN，级联的R-CNN逐步回归出更精细的框。级联之后每个阶段proposal的质量都会提升，即IoU阈值变高也不会出现样本不足的情况，图3是proposal IoU情况统计，图4是Cascade R-CNN framework。
-<figure class="figure">
+<p>所以提出Cascade R-CNN，级联的R-CNN逐步回归出更精细的框。级联之后每个阶段proposal的质量都会提升，即IoU阈值变高也不会出现样本不足的情况，图3是proposal IoU情况统计，图4是Cascade R-CNN framework。</p>
+<p><figure class="figure">
     <a href="/images/cascade_rcnn/proposal_quality.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/cascade_rcnn/proposal_quality.png"class="figure-img img-fluid"
         /> 
@@ -145,8 +146,7 @@ Cascade R-CNN认为这里存在两个问题：</p>
             图4. framework
         </figcaption>
 </figure>
-</li>
-</ol>
+</p>
 <h4 id="iou-net">IoU-Net</h4>
 <p>ECCV2018，旷世头条。如图5所示，现在存在问题随着训练的不断进行最后猫咪的框反而变得不那么精准了。因为我们最后是对许多框进行NMS处理，而且排序是按照分类分支的得分来的，得分高的框，不一定回归得好。总结现有框架存在如下两个问题：</p>
 <ol>
@@ -183,8 +183,8 @@ Cascade R-CNN认为这里存在两个问题：</p>
 最后再来个IoU-guided NMS就行了。所谓IoU-guided NMS，就是用predicted IoU作为NMS的得分，这里还有个分类得分的问题，他们用所有被归为一个框的几个框的分类得分最大值作为最后的得分。</li>
 </ol>
 <h4 id="double-head">Double-Head</h4>
-<p>2019，Microsoft。结论：fc适用于分类，conv适用于回归。图8为设计的几个实验, 当然conv head也不是也不是简单的conv，如图9所示有几个选项。
-<figure class="figure">
+<p>2019，Microsoft。结论：fc适用于分类，conv适用于回归。图8为设计的几个实验, 当然conv head也不是也不是简单的conv，如图9所示有几个选项。</p>
+<p><figure class="figure">
     <a href="/images/double-head/framework.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/double-head/framework.png"class="figure-img img-fluid"
         /> 
@@ -201,10 +201,10 @@ Cascade R-CNN认为这里存在两个问题：</p>
             图9. conv head
         </figcaption>
 </figure>
-
-图9 (d)，是改进版，conv分支的得分预测作为fc的补充。</p>
+</p>
+<p>图9 (d)，是改进版，conv分支的得分预测作为fc的补充。</p>
 <h4 id="dynamic-r-cnn">Dynamic R-CNN</h4>
-<p>2020，图森。Cascade R-CNN解决了想要高IoU作为阈值的问题，但是因为是级联结构，所以太耗时，能不能一次搞定？正如Cascade R-CNN分析的，proposal质量随着训练不断提高，所以动态修改第一阶段阈值、loss即可。图10是 pipeline。（a）是动态label分配，（b）是Smooth L1 损失动态调整。
+<p>2020，图森。Cascade R-CNN解决了想要高IoU作为阈值的问题，但是因为是级联结构，所以太耗时，能不能一次搞定？正如Cascade R-CNN分析的，proposal质量随着训练不断提高，所以动态修改第一阶段阈值、loss即可。图10是 pipeline。（a）是动态label分配，（b）是Smooth L1 损失动态调整。</p>
 <figure class="figure">
     <a href="/images/dynamic-rcnn/pipeline.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/dynamic-rcnn/pipeline.png"class="figure-img img-fluid"
@@ -214,7 +214,7 @@ Cascade R-CNN认为这里存在两个问题：</p>
         </figcaption>
 </figure>
 
-其动态调整策略大概是N-th求均值或者求中位数。具体来说，IoU阈值的更新策略为：每次记录N-th大的值，C轮迭代后求均值。Smooth L1损失中超参也需要改变，因为它的初衷就是outlier损失减少点，随着训练的进行我们可以越来越严格。方法是取第M-th小的误差记录，C轮迭代后取中位数更新。图12为ResNet-50-FPN在coco val上的实验结果。
+<p>其动态调整策略大概是N-th求均值或者求中位数。具体来说，IoU阈值的更新策略为：每次记录N-th大的值，C轮迭代后求均值。Smooth L1损失中超参也需要改变，因为它的初衷就是outlier损失减少点，随着训练的进行我们可以越来越严格。方法是取第M-th小的误差记录，C轮迭代后取中位数更新。图12为ResNet-50-FPN在coco val上的实验结果。</p>
 <figure class="figure">
     <a href="/images/dynamic-rcnn/result.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
         <img src="/images/dynamic-rcnn/result.png"class="figure-img img-fluid"
@@ -223,7 +223,6 @@ Cascade R-CNN认为这里存在两个问题：</p>
             图12. pipeline of Dynamic R-CNN
         </figcaption>
 </figure>
-</p>
                         </div><div class="tags my-3"><a class="badge badge-pill badge-light border mr-2" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B">
                                     <i class="fas fa-tag mr-2"></i>目标检测
                                 </a></div><ul class="share nav my-3 justify-content-end">
