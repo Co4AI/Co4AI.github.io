@@ -6,7 +6,7 @@
 
 <title>
   
-     目标检测中的分类与回归 | 
+     目标检测中的单阶段与两阶段框架 | 
     Code2arter
   
 </title><meta name="description" content="量变引起质变，这就是计算机给出的答案"><meta name="author" content="code2arter">
@@ -27,27 +27,27 @@
 
 
 
-<link rel="canonical" href="https://code2arter.github.io/post/detection_cls_reg/"><meta property="og:title" content="目标检测中的分类与回归" />
-<meta property="og:description" content="由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。" />
+<link rel="canonical" href="https://code2arter.github.io/post/detection_one_two_stage/"><meta property="og:title" content="目标检测中的单阶段与两阶段框架" />
+<meta property="og:description" content="如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://code2arter.github.io/post/detection_cls_reg/" />
-<meta property="og:image" content="https://code2arter.github.io/images/detection-demo.jpg" />
-<meta property="article:published_time" content="2020-04-18T18:38:36+08:00" />
-<meta property="article:modified_time" content="2020-04-18T18:38:36+08:00" />
-<meta itemprop="name" content="目标检测中的分类与回归">
-<meta itemprop="description" content="由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。">
-<meta itemprop="datePublished" content="2020-04-18T18:38:36&#43;08:00" />
-<meta itemprop="dateModified" content="2020-04-18T18:38:36&#43;08:00" />
-<meta itemprop="wordCount" content="74">
-<meta itemprop="image" content="https://code2arter.github.io/images/detection-demo.jpg">
+<meta property="og:url" content="https://code2arter.github.io/post/detection_one_two_stage/" />
+<meta property="og:image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg" />
+<meta property="article:published_time" content="2020-04-20T21:18:34+08:00" />
+<meta property="article:modified_time" content="2020-04-20T21:18:34+08:00" />
+<meta itemprop="name" content="目标检测中的单阶段与两阶段框架">
+<meta itemprop="description" content="如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。">
+<meta itemprop="datePublished" content="2020-04-20T21:18:34&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-20T21:18:34&#43;08:00" />
+<meta itemprop="wordCount" content="57">
+<meta itemprop="image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg">
 
 
 
 <meta itemprop="keywords" content="目标检测," /><meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://code2arter.github.io/images/detection-demo.jpg"/>
+<meta name="twitter:image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg"/>
 
-<meta name="twitter:title" content="目标检测中的分类与回归"/>
-<meta name="twitter:description" content="由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。"/>
+<meta name="twitter:title" content="目标检测中的单阶段与两阶段框架"/>
+<meta name="twitter:description" content="如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。"/>
 
 </head>
 <body>
@@ -75,12 +75,12 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="meta text-muted mb-3">
-                            <p class="created text-muted text-uppercase font-weight-bold mb-1">April 18, 2020</p>
+                            <p class="created text-muted text-uppercase font-weight-bold mb-1">April 20, 2020</p>
                             <span class="mr-2"><i class="fas fa-book-open mr-2"></i></span>
                             <span><i class="fas fa-clock mr-2"></i></span>
                         </div>
 
-                        <h1>目标检测中的分类与回归</h1>
+                        <h1>目标检测中的单阶段与两阶段框架</h1>
 
                         <ul class="authors list-inline"><li class="list-inline-item mr-3">
                     <div class="media author"><a href="/authors/code2arter/" class="mr-3">
@@ -96,153 +96,90 @@
                     </div>
                 </div><div class="row justify-content-center mb-3">
                                 <div class="col-lg-10">
-                                    <img data-src="/images/detection-demo_hu78cd6b7f137efce2dd8366970e66f89a_53001_900x500_fit_q75_box.jpg" class="img-fluid rounded mx-auto d-block" alt="目标检测中的分类与回归">
+                                    <img data-src="/images/detection-one-two-stage/stairs_hu72f382d3a2333776ea99e0ba092d8e86_80756_900x500_fit_q75_box.jpg" class="img-fluid rounded mx-auto d-block" alt="目标检测中的单阶段与两阶段框架">
                                 </div>
                             </div><div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="content">
-                            <p>由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。</p>
-<h4 id="cascade-r-cnn">Cascade R-CNN</h4>
-<p>CVPR2018, ucsd。现象：训练时候把正负样本界线的IoU提高，效果不怎么理想。说一下为啥要提高IoU阈值，因为我们想要得到更好、更精细的预测结果。图1左表示proposal与GT的IoU 经过第二阶段网络之后的改变，灰色不变就是baseline了。可以看到训练的时候三条曲线的优势都是在和训练阈值差不多的时候体现的。图1右表示训练IoU提高不一定是好事。</p>
+                            <p>如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。</p>
+<hr>
+<h4 id="aligndet">AlignDet</h4>
+<p>2019，图森。先介绍论文做的一个实验，作者把FPN分层出预测和单层出预测分别适用在Faster R-CNN和RetinaNet上，发现Retinanet掉点特别严重，如图1所示。这是实验先放在这，我们继续话题。
 <figure class="figure">
-    <a href="/images/cascade_rcnn/q1.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/cascade_rcnn/q1.png"class="figure-img img-fluid"
+    <a href="/images/detection-one-two-stage/exp_onelayer.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/exp_onelayer.png"class="figure-img img-fluid"
         /> 
     </a><figcaption class="figure-caption text-center">
-            图1. 高IoU训练的问题
+            图1. FPN特征实验
         </figcaption>
 </figure>
 
-<p>Cascade R-CNN认为这里存在两个问题：</p>
-<ol>
-<li>二阶段proposal选取策略，会使得网络在阈值附近过拟合。前面这句是论文的说法，其实就是高IoU的样本太少了。</li>
-<li>预测与训练分布不一样。inference的时候，IoU可不是0.5为界，好的proposal IoU都比较高。
-另外有个有意思的实验：在预测的时候吧GT框加入proposal集合中，可以看到IoU阈值是0.7时候训练的模型直接起飞；这也表明用IoU=0.5来训练模型，并不是个好选择。</li>
-</ol>
+<a href="http://xxx.itp.ac.cn/pdf/1908.01570.pdf">AlignDet</a>认为单阶段检测主要存在特征位置不match的问题，即预测所用的特征区域和gt label所需要的特征区域不匹配。验证和解决思路如下，先看卷积和RoIAlign的关系。有一节的小标题指出主旨：<strong>Im2Col is a special RoIAlign</strong>。考虑output是 h x w 的卷积运算，其每个bin (i, j)的取值位置为：
 <figure class="figure">
-    <a href="/images/cascade_rcnn/a1.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/cascade_rcnn/a1.png"class="figure-img img-fluid"
+    <a href="/images/detection-one-two-stage/loc_conv.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/loc_conv.png"class="figure-img img-fluid"
+        /> 
+    </a>
+</figure>
+
+output是 h x w 的RoIAlign运算，其每个bin (i, j)的取值位置为：
+<figure class="figure">
+    <a href="/images/detection-one-two-stage/loc_roi.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/loc_roi.png"class="figure-img img-fluid"
+        /> 
+    </a>
+</figure>
+
+令两式相等，可以得到
+<figure class="figure">
+    <a href="/images/detection-one-two-stage/func3.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/func3.png"class="figure-img img-fluid"
+        /> 
+    </a>
+</figure>
+
+所以可以这样理解，h x w 、stride为S的卷积和 hS x wS在每个位置做RoIAlign然后再接个全连接效果一样，如图2所示。
+<figure class="figure">
+    <a href="/images/detection-one-two-stage/im2col_roialign.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/im2col_roialign.png"class="figure-img img-fluid"
         /> 
     </a><figcaption class="figure-caption text-center">
-            图2. 将gt框加入proposal inference
+            图2. Im2Col &amp; RoIAlign
         </figcaption>
 </figure>
 
-<p>所以提出Cascade R-CNN，级联的R-CNN逐步回归出更精细的框。级联之后每个阶段proposal的质量都会提升，即IoU阈值变高也不会出现样本不足的情况，图3是proposal IoU情况统计，图4是Cascade R-CNN framework。</p>
-<p><figure class="figure">
-    <a href="/images/cascade_rcnn/proposal_quality.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/cascade_rcnn/proposal_quality.png"class="figure-img img-fluid"
+这里就可以回应文章开头所说的实验了，在FPN P4上stride是16，用3x3卷积核就可以看成48x48的RoIAlign，对应anchor 32 x 32/64 x 64还是比较match的，但是再往上就不行啦（这里也是先人的经验——感受野要大——的理论分析）。所以作者提出了RoIConv的operator，就是根据预测结果和给出的anchor、stride去做类似deformable的偏移位置采样。网络结构如图3所示。DPM是以往的单阶段特征提取网络比如rpn、retinanet等（这里有个loss监督，weight=0.25），ADM就是通过RoIConv的第二阶段（这里也有loss，weight=2）
+<figure class="figure">
+    <a href="/images/detection-one-two-stage/framework.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
+        <img src="/images/detection-one-two-stage/framework.png"class="figure-img img-fluid"
         /> 
     </a><figcaption class="figure-caption text-center">
-            图3. proposal质量随stage不断提高
+            图3. framework
         </figcaption>
 </figure>
 
-<figure class="figure">
-    <a href="/images/cascade_rcnn/framework.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/cascade_rcnn/framework.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图4. framework
-        </figcaption>
-</figure>
-</p>
-<h4 id="iou-net">IoU-Net</h4>
-<p>ECCV2018，旷世头条。如图5所示，现在存在问题随着训练的不断进行最后猫咪的框反而变得不那么精准了。因为我们最后是对许多框进行NMS处理，而且排序是按照分类分支的得分来的，得分高的框，不一定回归得好。总结现有框架存在如下两个问题：</p>
-<ol>
-<li>用分类得分进行框定位的NMS不合理（图6）</li>
-<li>定位得分没有可解释性
-<figure class="figure">
-    <a href="/images/IoU-Net/q1.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/IoU-Net/q1.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图5. 结果退化可视化
-        </figcaption>
-</figure>
-
-<figure class="figure">
-    <a href="/images/IoU-Net/relation.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/IoU-Net/relation.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图6. NMS前与GT IoU的关系
-        </figcaption>
-</figure>
-
-故提出IoU-Net，预测框的IoU，并投入到最后的NMS中。网络框架如图7所示.
-<figure class="figure">
-    <a href="/images/IoU-Net/iounet.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/IoU-Net/iounet.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图7. IoU-Net
-        </figcaption>
-</figure>
-
-最后再来个IoU-guided NMS就行了。所谓IoU-guided NMS，就是用predicted IoU作为NMS的得分，这里还有个分类得分的问题，他们用所有被归为一个框的几个框的分类得分最大值作为最后的得分。</li>
-</ol>
-<h4 id="double-head">Double-Head</h4>
-<p>2019，Microsoft。结论：fc适用于分类，conv适用于回归。图8为设计的几个实验, 当然conv head也不是也不是简单的conv，如图9所示有几个选项。</p>
-<p><figure class="figure">
-    <a href="/images/double-head/framework.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/double-head/framework.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图8. Double-Head
-        </figcaption>
-</figure>
-
-<figure class="figure">
-    <a href="/images/double-head/conv-head.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/double-head/conv-head.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图9. conv head
-        </figcaption>
-</figure>
-</p>
-<p>图9 (d)，是改进版，conv分支的得分预测作为fc的补充。</p>
-<h4 id="dynamic-r-cnn">Dynamic R-CNN</h4>
-<p>2020，图森。Cascade R-CNN解决了想要高IoU作为阈值的问题，但是因为是级联结构，所以太耗时，能不能一次搞定？正如Cascade R-CNN分析的，proposal质量随着训练不断提高，所以动态修改第一阶段阈值、loss即可。图10是 pipeline。（a）是动态label分配，（b）是Smooth L1 损失动态调整。</p>
-<figure class="figure">
-    <a href="/images/dynamic-rcnn/pipeline.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/dynamic-rcnn/pipeline.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图10. pipeline of Dynamic R-CNN
-        </figcaption>
-</figure>
-
-<p>其动态调整策略大概是N-th求均值或者求中位数。具体来说，IoU阈值的更新策略为：每次记录N-th大的值，C轮迭代后求均值。Smooth L1损失中超参也需要改变，因为它的初衷就是outlier损失减少点，随着训练的进行我们可以越来越严格。方法是取第M-th小的误差记录，C轮迭代后取中位数更新。图12为ResNet-50-FPN在coco val上的实验结果。</p>
-<figure class="figure">
-    <a href="/images/dynamic-rcnn/result.png" class="d-block" data-toggle="lightbox" data-gallery="post-gallery">
-        <img src="/images/dynamic-rcnn/result.png"class="figure-img img-fluid"
-        /> 
-    </a><figcaption class="figure-caption text-center">
-            图11. pipeline of Dynamic R-CNN
-        </figcaption>
-</figure>
+另论文做了直接用deformable来做offset的实验，效果一般没啥变化，分析是loss中包含分类的原因。label assignment也参考Cascade RCNN, ADM部分IoU调到了0.7。
+总结：其实说出Im2Col is a special RoIAlign的时候，论文就已经结束了。</p>
                         </div><div class="tags my-3"><a class="badge badge-pill badge-light border mr-2" href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B">
                                     <i class="fas fa-tag mr-2"></i>目标检测
                                 </a></div><ul class="share nav my-3 justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_cls_reg%2f&text=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%88%86%e7%b1%bb%e4%b8%8e%e5%9b%9e%e5%bd%92">
+            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&text=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
               <i class="fa-fw fab fa-twitter"></i>
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_cls_reg%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%88%86%e7%b1%bb%e4%b8%8e%e5%9b%9e%e5%bd%92">
+            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-linkedin-in"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_cls_reg%2f&t=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%88%86%e7%b1%bb%e4%b8%8e%e5%9b%9e%e5%bd%92">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&t=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-facebook-f"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_cls_reg%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%88%86%e7%b1%bb%e4%b8%8e%e5%9b%9e%e5%bd%92">
+            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-reddit-alien"></i>
             </a>
         </li>
@@ -263,7 +200,21 @@
         </div>
     </div>
 
+    <div class="related-content row mt-5 row-cols-1 row-cols-lg-3"><div class="col mb-3">
+                <div class="card h-100">
     
+    <a href="/post/detection_cls_reg/" class="d-block"><img data-src="/images/detection-demo_hu78cd6b7f137efce2dd8366970e66f89a_53001_700x350_resize_q75_box.jpg" class="card-img-top mx-auto d-block" alt="目标检测中的分类与回归"><div class="card-body">
+            <h4 class="card-title">目标检测中的分类与回归</h4>
+            <p class="card-text text-muted text-uppercase">April 18, 2020</p>
+            <div class="card-text">
+                由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。
+
+            </div>
+        </div>
+    </a>
+</div>
+
+            </div></div>
 </main>
 
 
