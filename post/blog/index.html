@@ -7,7 +7,7 @@
 <title>
   
      搜索之 DFS 与 BFS | 
-    Code2arter
+    Co4AI
   
 </title><meta name="description" content="量变引起质变，这就是计算机给出的答案"><meta name="author" content="code2arter">
 
@@ -27,7 +27,7 @@
 
 
 
-<link rel="canonical" href="https://code2arter.github.io/post/blog/"><meta property="og:title" content="搜索之 DFS 与 BFS" />
+<link rel="canonical" href="https://co4ai.github.io/post/blog/"><meta property="og:title" content="搜索之 DFS 与 BFS" />
 <meta property="og:description" content="计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。
@@ -36,8 +36,8 @@
 有了计算机，一切都不一样的了起来。我虽然总结不出个公式，但是我可以从到到尾都给你算一遍；
 我虽然一下找不出最优解，但是我可以算有情况都考虑。就是这么的霸道，这就是计算的艺术。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://code2arter.github.io/post/blog/" />
-<meta property="og:image" content="https://code2arter.github.io/images/time-change.jpeg" />
+<meta property="og:url" content="https://co4ai.github.io/post/blog/" />
+<meta property="og:image" content="https://co4ai.github.io/images/time-change.jpeg" />
 <meta property="article:published_time" content="2020-04-10T11:26:23+08:00" />
 <meta property="article:modified_time" content="2020-04-10T11:26:23+08:00" />
 <meta itemprop="name" content="搜索之 DFS 与 BFS">
@@ -51,12 +51,12 @@
 <meta itemprop="datePublished" content="2020-04-10T11:26:23&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-10T11:26:23&#43;08:00" />
 <meta itemprop="wordCount" content="413">
-<meta itemprop="image" content="https://code2arter.github.io/images/time-change.jpeg">
+<meta itemprop="image" content="https://co4ai.github.io/images/time-change.jpeg">
 
 
 
 <meta itemprop="keywords" content="dfs,bfs,搜索," /><meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://code2arter.github.io/images/time-change.jpeg"/>
+<meta name="twitter:image" content="https://co4ai.github.io/images/time-change.jpeg"/>
 
 <meta name="twitter:title" content="搜索之 DFS 与 BFS"/>
 <meta name="twitter:description" content="计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
@@ -72,7 +72,7 @@
     
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm" id="navbar-main-menu">
     <div class="container">
-        <a class="navbar-brand font-weight-bold" href="https://code2arter.github.io/">Code2arter</a>
+        <a class="navbar-brand font-weight-bold" href="https://co4ai.github.io/">Co4AI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -330,22 +330,22 @@ class Solution:
                                     <i class="fas fa-tag mr-2"></i>搜索
                                 </a></div><ul class="share nav my-3 justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&text=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
+            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fco4ai.github.io%2fpost%2fblog%2f&text=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
               <i class="fa-fw fab fa-twitter"></i>
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
+            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fco4ai.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-linkedin-in"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&t=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fco4ai.github.io%2fpost%2fblog%2f&t=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-facebook-f"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
+            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fco4ai.github.io%2fpost%2fblog%2f&title=%e6%90%9c%e7%b4%a2%e4%b9%8b%20DFS%20%e4%b8%8e%20BFS">
                 <i class="fa-fw fab fa-reddit-alien"></i>
             </a>
         </li>
@@ -375,7 +375,7 @@ class Solution:
         <div class="row">
             <div class="col">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://code2arter.github.io/index.xml" rel="alternate" type="application/rss+xml" class="icons d-block">
+                    <li class="list-inline-item"><a href="https://co4ai.github.io/index.xml" rel="alternate" type="application/rss+xml" class="icons d-block">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -483,7 +483,7 @@ class Solution:
 
                 <p class="text-muted">
                     
-                        Copyright &copy; Code2arter 2020
+                        Copyright &copy; Co4AI 2020
                     
                 </p>
 

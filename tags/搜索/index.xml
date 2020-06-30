@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>搜索 on Code2arter</title>
-    <link>https://code2arter.github.io/tags/%E6%90%9C%E7%B4%A2/</link>
-    <description>Recent content in 搜索 on Code2arter</description>
+    <title>搜索 on Co4AI</title>
+    <link>https://co4ai.github.io/tags/%E6%90%9C%E7%B4%A2/</link>
+    <description>Recent content in 搜索 on Co4AI</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 20 Apr 2020 09:48:55 +0800</lastBuildDate>
     
-	<atom:link href="https://code2arter.github.io/tags/%E6%90%9C%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://co4ai.github.io/tags/%E6%90%9C%E7%B4%A2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>二分搜索</title>
-      <link>https://code2arter.github.io/post/binary_search/</link>
+      <link>https://co4ai.github.io/post/binary_search/</link>
       <pubDate>Mon, 20 Apr 2020 09:48:55 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/binary_search/</guid>
+      <guid>https://co4ai.github.io/post/binary_search/</guid>
       <description>&lt;p&gt;之前说计算能力的提高带来了算法的革新，有很多问题都可以暴力搜索来解决。但是算法也可以继续优化，O(n)的算法可能就可以在一个小公司内平稳运行，但是想要做成个平台，提供给其他人/公司一起用，可能就需要优化到O(log(n))。二分搜索就是对搜索的优化，在即有问题满足一定条件的时候就可以使用，比如自变量或者因变量排好序的情况下。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>动态规划</title>
-      <link>https://code2arter.github.io/post/dynamic_programming/</link>
+      <link>https://co4ai.github.io/post/dynamic_programming/</link>
       <pubDate>Wed, 15 Apr 2020 20:24:01 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/dynamic_programming/</guid>
+      <guid>https://co4ai.github.io/post/dynamic_programming/</guid>
       <description>&lt;p&gt;动态规划，也是一种对搜索的优化方式，不过它要求的条件更加苛刻。一般是针对求一个最值或者求一个数量问题，就是某一子集索然有许许多多搜索路径，但是最终需要的答案不在乎这些路径的具体细节，只需要一个属性值。再回到本专题开始强调的思想，动态规划、二分搜索等等一系列算法，都是回答一个问题：&lt;strong&gt;为什么不用暴力搜索？&lt;/strong&gt; 答：&lt;strong&gt;因为求解的问题具有一些性质。&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>搜索之 DFS 与 BFS</title>
-      <link>https://code2arter.github.io/post/blog/</link>
+      <link>https://co4ai.github.io/post/blog/</link>
       <pubDate>Fri, 10 Apr 2020 11:26:23 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/blog/</guid>
+      <guid>https://co4ai.github.io/post/blog/</guid>
       <description>&lt;p&gt;计算机比人厉害的地方有很多，其中计算能力是重中之重。而将计算能力发挥地淋漓尽致的地方就是搜索。
 许多时候人们解惑办事都是根据经验。如果能上升到公式之类的，那就是算法。
 比如如何计算从1到n的一次方和，二次方和，三次方和等等。

@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>计算机视觉 on Code2arter</title>
-    <link>https://code2arter.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</link>
-    <description>Recent content in 计算机视觉 on Code2arter</description>
+    <title>计算机视觉 on Co4AI</title>
+    <link>https://co4ai.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</link>
+    <description>Recent content in 计算机视觉 on Co4AI</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Apr 2020 10:47:59 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 May 2020 17:10:13 +0800</lastBuildDate>
     
-	<atom:link href="https://code2arter.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://co4ai.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>非极大值抑制 (NMS)</title>
+      <link>https://co4ai.github.io/post/nms/</link>
+      <pubDate>Fri, 01 May 2020 17:10:13 +0800</pubDate>
+      
+      <guid>https://co4ai.github.io/post/nms/</guid>
+      <description>&lt;p&gt;非极大值抑制(NMS, Non-maximum suppression)，顾名思义，把不是极大值的元素给抑制下去。百度百科：可以理解为局部最大搜索。这个局部代表的是一个邻域，邻域有两个参数可变，一是邻域的维数，二是邻域的大小。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>YOLO——朴实无华的执行者</title>
-      <link>https://code2arter.github.io/post/yolo/</link>
+      <link>https://co4ai.github.io/post/yolo/</link>
       <pubDate>Sun, 26 Apr 2020 10:47:59 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/yolo/</guid>
+      <guid>https://co4ai.github.io/post/yolo/</guid>
       <description>&lt;p&gt;不知道给YOLO系列一个“朴实无华”的标签会不会被人锤爆狗头，不过在我看来YOLO每次都是当下技术集大成者，没有拍案叫绝的骚操作，但是却告诉你站着巨人的肩膀上所能看到的一切。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>目标检测中的单阶段与两阶段框架</title>
-      <link>https://code2arter.github.io/post/detection_one_two_stage/</link>
+      <link>https://co4ai.github.io/post/detection_one_two_stage/</link>
       <pubDate>Mon, 20 Apr 2020 21:18:34 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/detection_one_two_stage/</guid>
+      <guid>https://co4ai.github.io/post/detection_one_two_stage/</guid>
       <description>&lt;p&gt;如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>目标检测中的分类与回归</title>
-      <link>https://code2arter.github.io/post/detection_cls_reg/</link>
+      <link>https://co4ai.github.io/post/detection_cls_reg/</link>
       <pubDate>Sat, 18 Apr 2020 18:38:36 +0800</pubDate>
       
-      <guid>https://code2arter.github.io/post/detection_cls_reg/</guid>
+      <guid>https://co4ai.github.io/post/detection_cls_reg/</guid>
       <description>&lt;p&gt;由于任务的特殊性，在目标检测中存在两个子任务，一个是判断物体种类（是什么），另一个是给出物体位置（在哪里），这里我们就称为分类与回归。本文就来说说有哪些论文从这两个任务的联系与区别出发解决detection领域的问题。主要为采样和网络设计两个方向。&lt;/p&gt;</description>
     </item>
     

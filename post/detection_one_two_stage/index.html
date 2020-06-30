@@ -7,7 +7,7 @@
 <title>
   
      目标检测中的单阶段与两阶段框架 | 
-    Code2arter
+    Co4AI
   
 </title><meta name="description" content="量变引起质变，这就是计算机给出的答案"><meta name="author" content="code2arter">
 
@@ -27,11 +27,11 @@
 
 
 
-<link rel="canonical" href="https://code2arter.github.io/post/detection_one_two_stage/"><meta property="og:title" content="目标检测中的单阶段与两阶段框架" />
+<link rel="canonical" href="https://co4ai.github.io/post/detection_one_two_stage/"><meta property="og:title" content="目标检测中的单阶段与两阶段框架" />
 <meta property="og:description" content="如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://code2arter.github.io/post/detection_one_two_stage/" />
-<meta property="og:image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg" />
+<meta property="og:url" content="https://co4ai.github.io/post/detection_one_two_stage/" />
+<meta property="og:image" content="https://co4ai.github.io/images/detection-one-two-stage/stairs.jpg" />
 <meta property="article:published_time" content="2020-04-20T21:18:34+08:00" />
 <meta property="article:modified_time" content="2020-04-20T21:18:34+08:00" />
 <meta itemprop="name" content="目标检测中的单阶段与两阶段框架">
@@ -39,12 +39,12 @@
 <meta itemprop="datePublished" content="2020-04-20T21:18:34&#43;08:00" />
 <meta itemprop="dateModified" content="2020-04-20T21:18:34&#43;08:00" />
 <meta itemprop="wordCount" content="57">
-<meta itemprop="image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg">
+<meta itemprop="image" content="https://co4ai.github.io/images/detection-one-two-stage/stairs.jpg">
 
 
 
 <meta itemprop="keywords" content="目标检测," /><meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://code2arter.github.io/images/detection-one-two-stage/stairs.jpg"/>
+<meta name="twitter:image" content="https://co4ai.github.io/images/detection-one-two-stage/stairs.jpg"/>
 
 <meta name="twitter:title" content="目标检测中的单阶段与两阶段框架"/>
 <meta name="twitter:description" content="如今基于深度学习的目标检测主要有两种框架，单阶段（one-stage）和两阶段（two-stage）。所谓one-stage，即在最后的feature map直接输出预测结果，所谓two-stage，即在第一阶段之后，那其输出的框重新在feature map上拿出特征进行refine。目前此两中框架大有殊途同归的趋势，今天来一探究竟吧。"/>
@@ -54,7 +54,7 @@
     
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm" id="navbar-main-menu">
     <div class="container">
-        <a class="navbar-brand font-weight-bold" href="https://code2arter.github.io/">Code2arter</a>
+        <a class="navbar-brand font-weight-bold" href="https://co4ai.github.io/">Co4AI</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -164,22 +164,22 @@ output是 h x w 的RoIAlign运算，其每个bin (i, j)的取值位置为：
                                     <i class="fas fa-tag mr-2"></i>目标检测
                                 </a></div><ul class="share nav my-3 justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&text=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
+            <a class="nav-link" target="_blank" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fco4ai.github.io%2fpost%2fdetection_one_two_stage%2f&text=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
               <i class="fa-fw fab fa-twitter"></i>
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
+            <a class="nav-link" target="_blank" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fco4ai.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-linkedin-in"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&t=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
+            <a class="nav-link" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fco4ai.github.io%2fpost%2fdetection_one_two_stage%2f&t=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-facebook-f"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fcode2arter.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
+            <a class="nav-link" target="_blank" href="https://reddit.com/submit?url=https%3a%2f%2fco4ai.github.io%2fpost%2fdetection_one_two_stage%2f&title=%e7%9b%ae%e6%a0%87%e6%a3%80%e6%b5%8b%e4%b8%ad%e7%9a%84%e5%8d%95%e9%98%b6%e6%ae%b5%e4%b8%8e%e4%b8%a4%e9%98%b6%e6%ae%b5%e6%a1%86%e6%9e%b6">
                 <i class="fa-fw fab fa-reddit-alien"></i>
             </a>
         </li>
@@ -223,7 +223,7 @@ output是 h x w 的RoIAlign运算，其每个bin (i, j)的取值位置为：
         <div class="row">
             <div class="col">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://code2arter.github.io/index.xml" rel="alternate" type="application/rss+xml" class="icons d-block">
+                    <li class="list-inline-item"><a href="https://co4ai.github.io/index.xml" rel="alternate" type="application/rss+xml" class="icons d-block">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
@@ -331,7 +331,7 @@ output是 h x w 的RoIAlign运算，其每个bin (i, j)的取值位置为：
 
                 <p class="text-muted">
                     
-                        Copyright &copy; Code2arter 2020
+                        Copyright &copy; Co4AI 2020
                     
                 </p>
 
